@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let div = document.createElement('div');
+        // div.style.display = 'flex';
+        div.style.textAlign = 'center';
+        // div.style.justifyContent = 'center';
+        div.style.height = '100vh';
+        div.style.backgroundColor = '#17202A'
+
+        let name = document.createElement('h2');
+        name.innerHTML = 'Enter Your Date Of Birth';
+        name.style.color = '#D0D3D4';
+        name.style.paddingTop = '150px';
+
+        let inputDate = document.createElement("input");
+        inputDate.setAttribute('type', 'date');
+        inputDate.setAttribute('id', 'dob');
+        inputDate.style.width = '30%'
+        inputDate.style.height = '35px'
+            // document.body.append(inputDate);
+
+        let btn = document.createElement('button');
+        btn.setAttribute('type', 'button');
+        btn.classList.add("btn", 'btn-primary');
+        btn.innerHTML = 'Display Date';
+        btn.style.margin = '15px'
+        btn.addEventListener('click', displayDate);
+
+        function displayDate() {
+            let input = document.getElementById('dob').value;
+            let birthDate = new Date(input);
+            let p1 = document.createElement('p');
+            p1.innerHTML = birthDate;
+            p1.style.textAlign = 'center';
+            p1.style.color = '#D0D3D4'
+            console.log(birthDate);
+
+            let current = new Date();
+            console.log(current);
+
+            let milliSec = current.getTime() - birthDate.getTime();
+            let p2 = document.createElement('p');
+            p2.innerHTML = `Milli Seconds : ${milliSec}`;
+            p2.style.textAlign = 'center';
+            p2.style.color = '#D0D3D4'
+            console.log(`Milli Seconds : ${milliSec}`);
+
+            let sec = Math.floor(milliSec / 1000);
+            let p3 = document.createElement('p');
+            p3.style.textAlign = 'center';
+            p3.style.color = '#D0D3D4'
+            p3.innerHTML = `Seconds : ${sec}`;
+            console.log(`Seconds : ${sec}`);
+
+            let min = Math.floor(sec / 60);
+            let p4 = document.createElement('p');
+            p4.innerHTML = `Minutes : ${min}`;
+            p4.style.color = '#D0D3D4'
+            p4.style.textAlign = 'center';
+            console.log(`Minutes : ${min}`);
+
+            let hr = Math.floor(min / 60);
+            let p5 = document.createElement('p');
+            p5.innerHTML = `Hour : ${hr}`;
+            p5.style.color = '#D0D3D4'
+            p5.style.textAlign = 'center';
+            console.log(`Hour : ${hr}`);
+
+            let day = Math.floor(hr / 24);
+            let p6 = document.createElement('p');
+            p6.innerHTML = `Day : ${day}`;
+            p6.style.textAlign = 'center';
+            p6.style.color = '#D0D3D4'
+            console.log(`Day : ${day}`);
+
+            let year = current.getFullYear() - birthDate.getFullYear();
+            let p8 = document.createElement('p');
+            p8.innerHTML = `Year : ${year}`;
+            p8.style.textAlign = 'center';
+            p8.style.color = '#D0D3D4'
+            console.log(`Year : ${year}`);
+
+            let month = (year * 12) + (current.getMonth() - birthDate.getMonth());
+            let p7 = document.createElement('p');
+            p7.innerHTML = `Month : ${month}`;
+            p7.style.textAlign = 'center';
+            p7.style.color = '#D0D3D4'
+            console.log(`Month : ${month}`);
+            div.append(p1, p8, p7, p6, p5, p4, p3, p2);
+        }
+        // document.body.appendChild(btn);
+        div.append(name, inputDate, btn);
+        document.body.append(div);
+    </script>
+</body>
+
+</html>
